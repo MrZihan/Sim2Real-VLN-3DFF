@@ -1,4 +1,4 @@
-### Lookahead Exploration with Neural Radiance Representation for Continuous Vision-Language Navigation
+### Sim-to-Real Transfer via 3D Feature Fields for Vision-and-Language Navigation
 
 #### Zihan Wang, Xiangyang Li, Jiahao Yang, Yeqi Liu and Shuqiang Jiang
 
