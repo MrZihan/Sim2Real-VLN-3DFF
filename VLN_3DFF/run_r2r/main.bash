@@ -17,11 +17,10 @@ flag1="--exp_name release_r2r
       IL.load_from_ckpt True
       IL.is_requeue True
       IL.waypoint_aug  True
-	  IL.ckpt_to_load data/logs/r2r/checkpoints/release_r2r/ckpt.iter25000.pth
+	  IL.ckpt_to_load data/logs/r2r/checkpoints/release_r2r/ckpt.iter15000.pth
       TASK_CONFIG.SIMULATOR.HABITAT_SIM_V0.ALLOW_SLIDING True
       MODEL.pretrained_path pretrained/model_step_100000.pt
       "
-	  # IL.ckpt_to_load data/logs/r2r/checkpoints/release_r2r/ckpt.iter17000.pth
 
 flag2=" --exp_name release_r2r
       --run-type eval
