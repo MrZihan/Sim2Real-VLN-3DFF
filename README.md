@@ -32,13 +32,14 @@ bash pretrain_src/run_pt/run_r2r.bash 2342
 ```
 
 ### (Optional) Finetune the ETPNav without depth feature
+Follow [ETPNav](https://github.com/MarSaKi/ETPNav), for R2R-CE
 ```
-# Follow [ETPNav](https://github.com/MarSaKi/ETPNav), for R2R-CE
 cd ETPNav_without_depth
 bash run_r2r/main.bash train 2343
 ```
+
+Follow [ETPNav](https://github.com/MarSaKi/ETPNav), for RxR-CE
 ```
-# Follow [ETPNav](https://github.com/MarSaKi/ETPNav), for RxR-CE
 cd ETPNav_without_depth
 bash run_rxr/main.bash train 2343
 ```
