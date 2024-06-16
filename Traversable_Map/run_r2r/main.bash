@@ -49,8 +49,18 @@ flag3="--exp_name release_r2r
       "
 
 
-#CUDA_VISIBLE_DEVICES='6,7' python3 -m torch.distributed.launch --nproc_per_node=2 --master_port 2334 run.py $flag1
-
-CUDA_VISIBLE_DEVICES='5' python3 -m torch.distributed.launch --nproc_per_node=1 --master_port 2335 run.py $flag2
-
-#CUDA_VISIBLE_DEVICES='4,5,6,7' python -m torch.distributed.launch --nproc_per_node=4 --master_port $2 run.py $flag3
+mode=$1
+case $mode in 
+      train)
+      echo "###### train mode ######"
+      CUDA_VISIBLE_DEVICES='0,1' python -m torch.distributed.launch --nproc_per_node=2 --master_port $2 run.py $flag1
+      ;;
+      eval)
+      echo "###### eval mode ######"
+      CUDA_VISIBLE_DEVICES='0' python -m torch.distributed.launch --nproc_per_node=1 --master_port $2 run.py $flag2
+      ;;
+      infer)
+      echo "###### infer mode ######"
+      CUDA_VISIBLE_DEVICES='0,1,2,3' python -m torch.distributed.launch --nproc_per_node=4 --master_port $2 run.py $flag3
+      ;;
+esac
