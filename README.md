@@ -63,4 +63,15 @@ bash run_rxr/main.bash inter 2344  # inference
 ```
 
 ### (Optional) Run in Interbotix LoCoBot WX250 for real-world VLN
-Coming soon
+Ensure the robot and the server are on the same local area network (LAN).
+Fill in the `Server_IP` and `Robot_IP` correctly in Server_Code/run.py and Robot_Code/robot.py.
+Run the VLN model in the server:
+```
+cd Server_Code
+python3 run.py
+```
+Run the control code in the robot:
+```
+cd Robot_Code
+python3 run.py
+```
