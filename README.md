@@ -76,5 +76,5 @@ python3 run.py
 Run the control code in the robot:
 ```
 cd Robot_Code
-python3 run.py
+python3 robot.py
 ```
