@@ -84,7 +84,7 @@ python3 robot.py
 ```bibtex
 @article{wang2024sim,
   title={Sim-to-Real Transfer via 3D Feature Fields for Vision-and-Language Navigation},
-  author={Wang, Zihan and Li, Xiangyang and Yang, Jiahao and Jiang, Shuqiang and others},
+  author={Wang, Zihan and Li, Xiangyang and Yang, Jiahao and Liu, Yeqi and Jiang, Shuqiang},
   journal={arXiv preprint arXiv:2406.09798},
   year={2024}
 }
