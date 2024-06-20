@@ -1,0 +1,22 @@
+header: 
+  seq: 5317
+  stamp: 
+    secs: 1705905367
+    nsecs: 167650849
+  frame_id: "locobot/camera_color_optical_frame"
+height: 480
+width: 640
+distortion_model: "plumb_bob"
+D: [0.0, 0.0, 0.0, 0.0, 0.0]
+K: [604.0877685546875, 0.0, 321.72528076171875, 0.0, 604.0927734375, 242.1024169921875, 0.0, 0.0, 1.0]
+R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+P: [604.0877685546875, 0.0, 321.72528076171875, 0.0, 0.0, 604.0927734375, 242.1024169921875, 0.0, 0.0, 0.0, 1.0, 0.0]
+binning_x: 0
+binning_y: 0
+roi: 
+  x_offset: 0
+  y_offset: 0
+  height: 0
+  width: 0
+  do_rectify: False
+---
