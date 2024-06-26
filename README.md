@@ -28,7 +28,7 @@ bash run_r2r/main.bash train 2341
 Follow the [HNR-VLN](https://github.com/MrZihan/HNR-VLN) and use the [CLIP-ViT-B/16](https://github.com/openai/CLIP/blob/main/clip/clip.py) as the visual encoder.
 
 ### (Optional) Pre-train the ETPNav without depth feature
-Follow [ETPNav](https://github.com/MarSaKi/ETPNav), download the pretraining datasets [link](https://www.dropbox.com/sh/u3lhng7t2gq36td/AABAIdFnJxhhCg2ItpAhMtUBa?dl=0) (the same one used in [DUET](https://github.com/cshizhe/VLN-DUET)) and precomputed features [link](https://drive.google.com/file/d/1D3Gd9jqRfF-NjlxDAQG_qwxTIakZlrWd/view?usp=sharing), unzip in folder `pretrain_src`
+Download the pretraining datasets and precomputed features from folder `pretrain_src` in [BaiduNetDisk](https://pan.baidu.com/s/1RL9VI5NU9uTXLOyymhmx1w?pwd=ugi2)
 
 ```
 cd ETPNav_without_depth
