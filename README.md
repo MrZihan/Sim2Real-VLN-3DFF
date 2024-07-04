@@ -15,7 +15,7 @@
 3. (Optional) Download [GT annotation of waypoints](https://drive.google.com/drive/folders/1wpuGAO-rRalPKt8m1-QIvlb_Pv1rYJ4x?usp=sharing) for pre-training the traversable map predictor, following [CWP](https://github.com/wz0919/waypoint-predictor).
 4. Install `torch_kdtree` for K-nearest feature search from [torch_kdtree](https://github.com/thomgrand/torch_kdtree), following [HNR-VLN](https://github.com/MrZihan/HNR-VLN).
 5. Install `tinycudann` for faster multi-layer perceptrons (MLPs) from [tiny-cuda-nn](https://github.com/NVlabs/tiny-cuda-nn), following [HNR-VLN](https://github.com/MrZihan/HNR-VLN).
-6. Download the preprocessed data and checkpoints from [BaiduNetDisk](https://pan.baidu.com/s/1RL9VI5NU9uTXLOyymhmx1w?pwd=ugi2).
+6. Download the preprocessed data and checkpoints from [BaiduNetDisk](https://pan.baidu.com/s/1RL9VI5NU9uTXLOyymhmx1w?pwd=ugi2) or [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA).
 
 ### (Optional) Pre-train the Semantic Traversable Map
 ```
