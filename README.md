@@ -14,11 +14,18 @@
 2. (Optional) Download [MP3D Scene Semantic Pclouds](https://drive.google.com/file/d/1u4SKEYs4L5RnyXrIX-faXGU1jc16CTkJ/view) for pre-training the semantic and occupancy map predictor, following [CM2](https://github.com/ggeorgak11/CM2).
 3. (Optional) Download [GT annotation of waypoints](https://drive.google.com/drive/folders/1wpuGAO-rRalPKt8m1-QIvlb_Pv1rYJ4x?usp=sharing) for pre-training the traversable map predictor, following [CWP](https://github.com/wz0919/waypoint-predictor).
 4. Install `torch_kdtree` for K-nearest feature search from [torch_kdtree](https://github.com/thomgrand/torch_kdtree), following [HNR-VLN](https://github.com/MrZihan/HNR-VLN).
-5. Install `tinycudann` for faster multi-layer perceptrons (MLPs) from [tiny-cuda-nn](https://github.com/NVlabs/tiny-cuda-nn), following [HNR-VLN](https://github.com/MrZihan/HNR-VLN).
+   ```
+   git clone https://github.com/thomgrand/torch_kdtree
+   cd torch_kdtree
+   git submodule init
+   git submodule update
+   pip3 install .
+   ```
+6. Install `tinycudann` for faster multi-layer perceptrons (MLPs) from [tiny-cuda-nn](https://github.com/NVlabs/tiny-cuda-nn), following [HNR-VLN](https://github.com/MrZihan/HNR-VLN).
    ```
    pip3 install git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch
    ```
-6. Download the preprocessed data and checkpoints from [BaiduNetDisk](https://pan.baidu.com/s/1RL9VI5NU9uTXLOyymhmx1w?pwd=ugi2) or [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA).
+7. Download the preprocessed data and checkpoints from [BaiduNetDisk](https://pan.baidu.com/s/1RL9VI5NU9uTXLOyymhmx1w?pwd=ugi2) or [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA).
 
 ### (Optional) Pre-train the Semantic Traversable Map
 ```
