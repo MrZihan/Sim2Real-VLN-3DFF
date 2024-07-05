@@ -80,7 +80,7 @@ python3 robot.py
 ```
 
 ### Issues
-For training speed, see [Issue#2](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/2).
+For the training process and training speed, see [Issue#2](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/2).
 
 ### Citation
 
