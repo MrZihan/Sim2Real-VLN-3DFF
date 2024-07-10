@@ -965,6 +965,9 @@ class RLTrainer(BaseVLNCETrainer):
                     positions[ob_i] = agent_state_i['position']
                     headings[ob_i] = agent_state_i['heading']
 
+                    if agent_state_i == None:
+                        break
+
                 policy_net.start_positions = positions
                 policy_net.start_headings = [(heading+2*math.pi)%(2*math.pi) for heading in headings]
                 policy_net.global_fts = [[] for i in range(batch_size)]
