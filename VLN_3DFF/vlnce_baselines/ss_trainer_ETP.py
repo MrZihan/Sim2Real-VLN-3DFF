@@ -166,12 +166,11 @@ class RLTrainer(BaseVLNCETrainer):
         
         torch.cuda.set_device(self.device)
         if self.world_size > 1:
-            distr.init_process_group(backend='nccl', init_method='env://')
+            distr.init_process_group(backend='nccl', init_method='env://',timeout=timedelta(seconds=7200000))
             self.device = self.config.TORCH_GPU_IDS[self.local_rank]
             self.config.defrost()
             self.config.TORCH_GPU_ID = self.config.TORCH_GPU_IDS[self.local_rank]
             self.config.freeze()
-            torch.cuda.set_device(self.device)
 
     def _init_envs(self):
         # for DDP to load different data
@@ -673,7 +672,6 @@ class RLTrainer(BaseVLNCETrainer):
             eps_to_eval = min(self.config.EVAL.EPISODE_COUNT, sum(self.envs.number_of_episodes))
         self.stat_eps = {}
         self.pbar = tqdm.tqdm(total=eps_to_eval) if self.config.use_pbar else None
-
         while len(self.stat_eps) < eps_to_eval:
             self.rollout('eval')
         self.envs.close()
@@ -762,13 +760,14 @@ class RLTrainer(BaseVLNCETrainer):
         
         self.world_size = self.config.GPU_NUMBERS
         self.local_rank = self.config.local_rank
+        torch.cuda.set_device(self.device)
         if self.world_size > 1:
-            distr.init_process_group(backend='nccl', init_method='env://')
+            distr.init_process_group(backend='nccl', init_method='env://',timeout=timedelta(seconds=7200000))
             self.device = self.config.TORCH_GPU_IDS[self.local_rank]
             self.config.defrost()
             self.config.TORCH_GPU_ID = self.config.TORCH_GPU_IDS[self.local_rank]
             self.config.freeze()
-        torch.cuda.set_device(self.device)
+
         self.traj = self.collect_infer_traj()
 
         self.envs = construct_envs(
@@ -804,6 +803,7 @@ class RLTrainer(BaseVLNCETrainer):
         self.envs.close()
 
         if self.world_size > 1:
+            distr.barrier()
             aggregated_path_eps = [None for _ in range(self.world_size)]
             distr.all_gather_object(aggregated_path_eps, self.path_eps)
             tmp_eps_dict = {}
@@ -861,15 +861,6 @@ class RLTrainer(BaseVLNCETrainer):
         batch = batch_obs(observations, self.device)
         batch = apply_obs_transforms_batch(batch, self.obs_transforms)
         
-        #scene_id_list = ['x8F5xyUWy9e','zsNo4HB9uLZ']
-        #episode_id_list = [33,1052,164,1196]
-        #scene_id = self.envs.current_episodes()[0].scene_id.split('/')[-1][:-4]
-        #episode_id = self.envs.current_episodes()[0].episode_id
-
-        #if scene_id in scene_id_list and episode_id in episode_id_list:
-        #    pass
-        #else:
-        #    return
 
         if mode == 'eval':
             env_to_pause = [i for i, ep in enumerate(self.envs.current_episodes()) 
@@ -953,20 +944,15 @@ class RLTrainer(BaseVLNCETrainer):
             policy_net = self.policy.net.module
 
         for stepk in range(self.max_len):
+            batch_size = self.envs.num_envs
             # agent's current position and heading
-            batch_size = len(observations)
-
             if stepk == 0:
                 
                 for ob_i in range(batch_size):
-                
                     agent_state_i = self.envs.call_at(ob_i,
                             "get_agent_info", {})
                     positions[ob_i] = agent_state_i['position']
                     headings[ob_i] = agent_state_i['heading']
-
-                    if agent_state_i == None:
-                        break
 
                 policy_net.start_positions = positions
                 policy_net.start_headings = [(heading+2*math.pi)%(2*math.pi) for heading in headings]
@@ -1026,7 +1012,10 @@ class RLTrainer(BaseVLNCETrainer):
                         viz_depth = depth
 
                         if map_config['norm_depth']:
-                            depth_abs = utils.unnormalize_depth(depth, min=0.0, max=10.0) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            if self.config.MODEL.task_type == 'r2r':
+                                depth_abs = utils.unnormalize_depth(depth, min=0.0, max=10.0) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            elif self.config.MODEL.task_type == 'rxr':
+                                depth_abs = utils.unnormalize_depth(depth, min=0.5, max=5.0) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                         batch_img.append(img.unsqueeze(0))
                         batch_depth.append(depth_abs.unsqueeze(0))
@@ -1510,7 +1499,7 @@ class RLTrainer(BaseVLNCETrainer):
 
             # pause env
             if sum(dones) > 0:
-                for i in reversed(list(range(self.envs.num_envs))):
+                for i in reversed(list(range(len(dones)))):
                     if dones[i]:
                         not_done_index.pop(i)
                         self.envs.pause_at(i)
@@ -1544,8 +1533,8 @@ class RLTrainer(BaseVLNCETrainer):
             batch = apply_obs_transforms_batch(batch, self.obs_transforms)
 
         #exit()
-        if self.world_size > 1:
-            torch.distributed.barrier()
+        #if self.world_size > 1:
+        #    torch.distributed.barrier()
 
         if mode == 'train':
             loss = ml_weight * loss / total_actions
