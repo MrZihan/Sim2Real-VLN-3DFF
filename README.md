@@ -8,6 +8,11 @@
 
 <div align=center><img src="https://github.com/MrZihan/Sim2Real-VLN-3DFF/blob/main/Figure/Figure2.jpg" width="700px" alt="Figure 2. The sim-to-real transfer framework via semantic traversable map and 3D feature fields for vision-and-language navigation."/></div>
 
+### Changlogs
+
+July 12th, 2024. Fixed the bug caused process interruption during performance evaluation (Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/ss_trainer_ETP.py, Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/models/etp/nerf.py).
+July 4th, 2024. Add another cloud drive [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA) for downloading data and checkpoints.
+
 ### Requirements
 
 1. Install `Habitat simulator`: follow instructions from [ETPNav](https://github.com/MarSaKi/ETPNav) and [VLN-CE](https://github.com/jacobkrantz/VLN-CE).
