@@ -270,8 +270,8 @@ class RLTrainer(BaseVLNCETrainer):
         self.policy.load_state_dict(ckpt_dict["state_dict"],strict=False)
       
 
-        #ckpt_dict = self.load_checkpoint('pretrained/NeRF_p16_8x8.pth', map_location="cpu")   
-        ckpt_dict = self.load_checkpoint('pretrained/NeRF_p32_8x8.pth', map_location="cpu")   
+        ckpt_dict = self.load_checkpoint('pretrained/NeRF_p16_8x8.pth', map_location="cpu")   
+        #ckpt_dict = self.load_checkpoint('pretrained/NeRF_p32_8x8.pth', map_location="cpu")   
         b = [key for key in ckpt_dict["state_dict"].keys()]
         for key in b:
             if 'rgb_encoder' in key:
@@ -539,7 +539,7 @@ class RLTrainer(BaseVLNCETrainer):
         writer     = TensorboardWriter(self.config.TENSORBOARD_DIR if self.local_rank < 1 else None)
 
         self.scaler = GradScaler()
-        logger.info('Traning Starts... GOOD LUCK!')
+        logger.info('Training Starts... GOOD LUCK!')
         for idx in range(start_iter, total_iter, log_every):
             interval = min(log_every, max(total_iter-idx, 0))
             cur_iter = idx + interval
@@ -1075,7 +1075,7 @@ class RLTrainer(BaseVLNCETrainer):
                         # step_geo_grid contains the map snapshot every time a new observation is added
                         global_step_occup_grid_sseg, global_step_segm_grid_sseg = sg_map_global.update_proj_grid_bayes(occup_grid_sseg.unsqueeze(1),semantic_grid_sseg.unsqueeze(1))
 
-                    if update_id == 0 and turn_observations!=[None]*batch_size:
+                    if update_id == 0 and turn_observations!=[None]*len(turn_observations):
                         post_turn_observations = [item for item in turn_observations if item !=None]
                         post_turn_observations = extract_instruction_tokens(post_turn_observations,self.config.TASK_CONFIG.TASK.INSTRUCTION_SENSOR_UUID)
                         turn_batch = batch_obs(post_turn_observations, self.device)
@@ -1212,7 +1212,7 @@ class RLTrainer(BaseVLNCETrainer):
 
 
                 '''
-                for b in range(self.batch_size):            
+                for b in range(batch_size):            
 
                     scene_id = self.envs.current_episodes()[b].scene_id.split('/')[-1][:-4]
                     episode_id = self.envs.current_episodes()[b].episode_id
