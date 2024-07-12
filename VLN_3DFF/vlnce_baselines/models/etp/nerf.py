@@ -88,7 +88,7 @@ def config_parser():
    
 
     # rendering options
-    parser.add_argument("--N_samples", type=int, default=128, 
+    parser.add_argument("--N_samples", type=int, default=256, 
                         help='number of coarse samples per ray')
     parser.add_argument("--N_importance", type=int, default=8,
                         help='number of fine samples per ray')
