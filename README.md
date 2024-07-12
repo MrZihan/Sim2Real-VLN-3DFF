@@ -10,8 +10,8 @@
 
 ### Changlogs
 
-July 12th, 2024. Fixed the bug caused process interruption during performance evaluation (Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/ss_trainer_ETP.py, Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/models/etp/nerf.py).
-July 4th, 2024. Add another cloud drive [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA) for downloading data and checkpoints.
+1. July 12th, 2024. Fixed the bug caused process interruption during performance evaluation (Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/ss_trainer_ETP.py, Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/models/etp/nerf.py).
+2. July 4th, 2024. Add another cloud drive [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA) for downloading data and checkpoints.
 
 ### Requirements
 
