@@ -14,6 +14,9 @@
    ```Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/ss_trainer_ETP.py, Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/models/etp/nerf.py```
 2. July 4th, 2024. Add another cloud drive [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA) for downloading data and checkpoints.
 
+### Issues
+For the training process and training speed, see [Issue#2](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/2).
+
 ### Requirements
 
 1. Install `Habitat simulator`: follow instructions from [ETPNav](https://github.com/MarSaKi/ETPNav) and [VLN-CE](https://github.com/jacobkrantz/VLN-CE).
@@ -95,8 +98,6 @@ cd Robot_Code
 python3 robot.py
 ```
 
-### Issues
-For the training process and training speed, see [Issue#2](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/2).
 
 ### Citation
 
