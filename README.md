@@ -101,14 +101,14 @@ python3 robot.py
 
 ### Citation
 
-```bibtex
-@article{wang2024sim,
+```
+@inproceedings{wang2024sim,
   title={Sim-to-Real Transfer via 3D Feature Fields for Vision-and-Language Navigation},
   author={Wang, Zihan and Li, Xiangyang and Yang, Jiahao and Liu, Yeqi and Jiang, Shuqiang},
-  journal={arXiv preprint arXiv:2406.09798},
+  booktitle={Conference on Robot Learning},
   year={2024}
 }
-  ```
+```
 
 ### Acknowledgments
 Our code is based on [ETPNav](https://github.com/MarSaKi/ETPNav), [HNR-VLN](https://github.com/MrZihan/HNR-VLN) and [CM2](https://github.com/ggeorgak11/CM2). Thanks for their great works!
