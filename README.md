@@ -16,6 +16,7 @@
 
 ### Issues
 For the issue of performance, see [Issue#3](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/3).
+
 For the training process and training speed, see [Issue#2](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/2).
 
 ### Requirements
