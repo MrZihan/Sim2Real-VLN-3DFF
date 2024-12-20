@@ -26,10 +26,10 @@ flag1="--exp_name release_rxr
 flag2="--exp_name release_rxr
       --run-type eval
       --exp-config run_rxr/iter_train.yaml
-      SIMULATOR_GPU_IDS [0,1,2,3]
-      TORCH_GPU_IDS [0,1,2,3]
-      GPU_NUMBERS 4
-      NUM_ENVIRONMENTS 2
+      SIMULATOR_GPU_IDS [0]
+      TORCH_GPU_IDS [0]
+      GPU_NUMBERS 1
+      NUM_ENVIRONMENTS 1
       TASK_CONFIG.SIMULATOR.HABITAT_SIM_V0.ALLOW_SLIDING False
       EVAL.CKPT_PATH_DIR data/logs/checkpoints/release_rxr/ckpt.iter29600.pth
       IL.back_algo control
@@ -39,10 +39,10 @@ flag2="--exp_name release_rxr
 flag3="--exp_name release_rxr
       --run-type inference
       --exp-config run_rxr/iter_train.yaml
-      SIMULATOR_GPU_IDS [4,5,6,7]
-      TORCH_GPU_IDS [4,5,6,7]
-      GPU_NUMBERS 4
-      NUM_ENVIRONMENTS 2
+      SIMULATOR_GPU_IDS [0]
+      TORCH_GPU_IDS [0]
+      GPU_NUMBERS 1
+      NUM_ENVIRONMENTS 1
       TASK_CONFIG.SIMULATOR.HABITAT_SIM_V0.ALLOW_SLIDING False
       INFERENCE.CKPT_PATH data/logs/checkpoints/release_rxr/ckpt.iter22600.pth
       INFERENCE.PREDICTIONS_FILE preds.jsonl
@@ -54,14 +54,14 @@ mode=$1
 case $mode in 
       train)
       echo "###### train mode ######"
-      CUDA_VISIBLE_DEVICES='4,5,6,7' python -m torch.distributed.launch --nproc_per_node=4 --master_port $2 run.py $flag1
+      CUDA_VISIBLE_DEVICES='0,1,2,3' python -m torch.distributed.launch --nproc_per_node=4 --master_port $2 run.py $flag1
       ;;
       eval)
       echo "###### eval mode ######"
-      CUDA_VISIBLE_DEVICES='0,1,2,3' python -m torch.distributed.launch --nproc_per_node=4 --master_port $2 run.py $flag2
+      CUDA_VISIBLE_DEVICES='0' python -m torch.distributed.launch --nproc_per_node=1 --master_port $2 run.py $flag2
       ;;
       infer)
       echo "###### infer mode ######"
-      CUDA_VISIBLE_DEVICES='4,5,6,7' python -m torch.distributed.launch --nproc_per_node=4 --master_port $2 run.py $flag3
+      CUDA_VISIBLE_DEVICES='0' python -m torch.distributed.launch --nproc_per_node=1 --master_port $2 run.py $flag3
       ;;
 esac
