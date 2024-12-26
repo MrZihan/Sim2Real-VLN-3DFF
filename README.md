@@ -9,11 +9,11 @@
 <div align=center><img src="https://github.com/MrZihan/Sim2Real-VLN-3DFF/blob/main/Figure/Figure2.jpg" width="700px" alt="Figure 2. The sim-to-real transfer framework via semantic traversable map and 3D feature fields for vision-and-language navigation."/></div>
 
 ### Changlogs
-
-1. December 20th, 2024. A bug has been found. There is a significant performance loss when evaluating with multiple GPUs and large batch sizes. Please set both `GPU_NUMBERS` and `NUM_ENVIRONMENTS` to 1 before evaluating the model's performance. This issue is currently being investigated.
-2. July 12th, 2024. Fixed the bug caused process interruption during performance evaluation.
+[December 26th, 2024] Some users encountered the error `TypeError: Expected state_dict to be dict-like, got <class 'torch.jit._script.RecursiveScriptModule'>` when loading the CLIP model (ViT-B-16.pt). To resolve this issue, please modify the code for loading the CLIP model from `torch.load('ViT-B-16.pt', map_location=torch.device('cpu'))` to `torch.jit.load('ViT-B-16.pt', map_location=torch.device('cpu')).state_dict()`.
+[December 20th, 2024] A bug has been found. There is a significant performance loss when evaluating with multiple GPUs and large batch sizes. Please set both `GPU_NUMBERS` and `NUM_ENVIRONMENTS` to 1 before evaluating the model's performance. This issue is currently being investigated.
+[July 12th, 2024] Fixed the bug caused process interruption during performance evaluation.
    ```Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/ss_trainer_ETP.py, Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/models/etp/nerf.py```
-3. July 4th, 2024. Add another cloud drive [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA) for downloading data and checkpoints.
+[July 4th, 2024] Add another cloud drive [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA) for downloading data and checkpoints.
 
 ### Issues
 For the issue of performance, see [Issue#3](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/3).
