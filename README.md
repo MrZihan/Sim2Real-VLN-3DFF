@@ -16,11 +16,11 @@
 4. [July 4th, 2024] Add another cloud drive [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA) for downloading data and checkpoints.
 
 ### Issues
-For the issue of performance, see [Issue#3](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/3).
+1. For the issue of performance, see [Issue#3](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/3).
 
-For the training process and training speed, see [Issue#2](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/2).
+2. For the training process and training speed, see [Issue#2](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/2).
 
-For the checkpoints, see [Issue#4](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/4).
+3. For the checkpoints, see [Issue#4](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/4).
 
 ### Requirements
 
