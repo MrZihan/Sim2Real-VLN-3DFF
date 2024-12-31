@@ -20,6 +20,8 @@ For the issue of performance, see [Issue#3](https://github.com/MrZihan/Sim2Real-
 
 For the training process and training speed, see [Issue#2](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/2).
 
+For the checkpoints, see [Issue#4](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/4).
+
 ### Requirements
 
 1. Install `Habitat simulator`: follow instructions from [ETPNav](https://github.com/MarSaKi/ETPNav) and [VLN-CE](https://github.com/jacobkrantz/VLN-CE).
