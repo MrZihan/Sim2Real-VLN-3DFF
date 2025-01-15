@@ -9,6 +9,7 @@
 <div align=center><img src="https://github.com/MrZihan/Sim2Real-VLN-3DFF/blob/main/Figure/Figure2.jpg" width="700px" alt="Figure 2. The sim-to-real transfer framework via semantic traversable map and 3D feature fields for vision-and-language navigation."/></div>
 
 ### Changlogs
+1. [January 15th, 2025] Fixed the BUG `Error: Expected all tensors to be on the same device, but found at least two devices` on lines 105-116 and lines 731-743 of `Sim2Real-VLN-3DFF/VLN_3DFF/vlnce_baselines/ss_trainer_ETP.py`.
 1. [December 26th, 2024] Some users encountered the error `TypeError: Expected state_dict to be dict-like, got <class 'torch.jit._script.RecursiveScriptModule'>` when loading the CLIP model (ViT-B-16.pt). To resolve this issue, please modify the code for loading the CLIP model from `torch.load('ViT-B-16.pt', map_location=torch.device('cpu'))` to `torch.jit.load('ViT-B-16.pt', map_location=torch.device('cpu')).state_dict()`.
 2. **[December 20th, 2024] A bug has been found. There is a significant performance loss when evaluating with multiple GPUs and large batch sizes. Please set both `GPU_NUMBERS` and `NUM_ENVIRONMENTS` to 1 before evaluating the model's performance. This issue is currently being investigated.**
 3. [July 12th, 2024] Fixed the bug caused process interruption during performance evaluation.
@@ -16,11 +17,13 @@
 4. [July 4th, 2024] Add another cloud drive [TeraBox](https://terabox.com/s/1fX5LApMdMHHIwrLIzqIbxA) for downloading data and checkpoints.
 
 ### Issues
-1. For the issue of performance, see [Issue#3](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/3).
+1. For the issue of distributed training, see [Issue#7](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/7).
 
-2. For the training process and training speed, see [Issue#2](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/2).
+2. For the issue of performance, see [Issue#3](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/3).
 
-3. For the checkpoints, see [Issue#4](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/4).
+3. For the training process and training speed, see [Issue#2](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/2).
+
+4. For the checkpoints, see [Issue#4](https://github.com/MrZihan/Sim2Real-VLN-3DFF/issues/4).
 
 ### Requirements
 
