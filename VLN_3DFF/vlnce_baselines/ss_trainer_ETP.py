@@ -99,6 +99,22 @@ class RLTrainer(BaseVLNCETrainer):
         )
 
     def _set_config(self):
+
+	self.batch_size = self.config.IL.batch_size
+
+        self.world_size = self.config.GPU_NUMBERS
+        self.local_rank = self.config.local_rank
+        torch.cuda.set_device(self.device)
+        if self.world_size > 1:
+            torch.distributed.init_process_group("nccl",timeout=timedelta(seconds=7200000))
+            self.local_rank, self.world_size = torch.distributed.get_rank(), torch.distributed.get_world_size()
+            self.device = self.local_rank % torch.cuda.device_count()
+            self.config.defrost()
+            self.config.TORCH_GPU_ID = self.config.TORCH_GPU_IDS[self.local_rank]
+            self.config.local_rank = self.local_rank
+            self.config.freeze()
+            torch.cuda.set_device(self.device)
+		
         self.split = self.config.TASK_CONFIG.DATASET.SPLIT
         self.config.defrost()
         self.config.TASK_CONFIG.TASK.NDTW.SPLIT = self.split
@@ -160,17 +176,7 @@ class RLTrainer(BaseVLNCETrainer):
                     self.config.TASK_CONFIG.SIMULATOR.AGENT_0.SENSORS.append(camera_template)
         self.config.freeze()
 
-        self.world_size = self.config.GPU_NUMBERS
-        self.local_rank = self.config.local_rank
-        self.batch_size = self.config.IL.batch_size
         
-        torch.cuda.set_device(self.device)
-        if self.world_size > 1:
-            distr.init_process_group(backend='nccl', init_method='env://',timeout=timedelta(seconds=7200000))
-            self.device = self.config.TORCH_GPU_IDS[self.local_rank]
-            self.config.defrost()
-            self.config.TORCH_GPU_ID = self.config.TORCH_GPU_IDS[self.local_rank]
-            self.config.freeze()
 
     def _init_envs(self):
         # for DDP to load different data
@@ -722,6 +728,20 @@ class RLTrainer(BaseVLNCETrainer):
 
     @torch.no_grad()
     def inference(self):
+	self.batch_size = self.config.IL.batch_size
+        self.world_size = self.config.GPU_NUMBERS
+        self.local_rank = self.config.local_rank
+        torch.cuda.set_device(self.device)
+        if self.world_size > 1:
+            torch.distributed.init_process_group("nccl",timeout=timedelta(seconds=7200000))
+            self.local_rank, self.world_size = torch.distributed.get_rank(), torch.distributed.get_world_size()
+            self.device = self.local_rank % torch.cuda.device_count()
+            self.config.defrost()
+            self.config.TORCH_GPU_ID = self.config.TORCH_GPU_IDS[self.local_rank]
+            self.config.local_rank = self.local_rank
+            self.config.freeze()
+            torch.cuda.set_device(self.device)
+		
         checkpoint_path = self.config.INFERENCE.CKPT_PATH
         logger.info(f"checkpoint_path: {checkpoint_path}")
         self.config.defrost()
@@ -758,15 +778,6 @@ class RLTrainer(BaseVLNCETrainer):
         self.config.SENSORS = task_config.SIMULATOR.AGENT_0.SENSORS
         self.config.freeze()
         
-        self.world_size = self.config.GPU_NUMBERS
-        self.local_rank = self.config.local_rank
-        torch.cuda.set_device(self.device)
-        if self.world_size > 1:
-            distr.init_process_group(backend='nccl', init_method='env://',timeout=timedelta(seconds=7200000))
-            self.device = self.config.TORCH_GPU_IDS[self.local_rank]
-            self.config.defrost()
-            self.config.TORCH_GPU_ID = self.config.TORCH_GPU_IDS[self.local_rank]
-            self.config.freeze()
 
         self.traj = self.collect_infer_traj()
 
