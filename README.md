@@ -111,12 +111,10 @@ python3 robot.py
 ### Citation
 
 ```
-@inproceedings{
-   wang2024simtoreal,
-   title={Sim-to-Real Transfer via 3D Feature Fields for Vision-and-Language Navigation},
-   author={Zihan Wang and Xiangyang Li and Jiahao Yang and Yeqi Liu and Shuqiang Jiang},
-   booktitle={8th Annual Conference on Robot Learning},
-   year={2024}
+@inproceedings{wangsim,
+  title={Sim-to-Real Transfer via 3D Feature Fields for Vision-and-Language Navigation},
+  author={Wang, Zihan and Li, Xiangyang and Yang, Jiahao and Liu, Yeqi and Jiang, Shuqiang},
+  booktitle={8th Annual Conference on Robot Learning}
 }
 ```
 
