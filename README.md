@@ -114,7 +114,8 @@ python3 robot.py
 @inproceedings{wangsim,
   title={Sim-to-Real Transfer via 3D Feature Fields for Vision-and-Language Navigation},
   author={Wang, Zihan and Li, Xiangyang and Yang, Jiahao and Liu, Yeqi and Jiang, Shuqiang},
-  booktitle={8th Annual Conference on Robot Learning}
+  booktitle={8th Annual Conference on Robot Learning},
+  year={2025}
 }
 ```
 
